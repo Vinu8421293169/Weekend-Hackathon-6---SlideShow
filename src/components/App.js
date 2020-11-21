@@ -23,7 +23,7 @@ const App = (props) => {
     }
     setIndex(index - 1);
     setPrevButton(false);
-    setPrevButton(false);
+    setNextButton(false);
   };
 
   const onRestart = (el) => {
