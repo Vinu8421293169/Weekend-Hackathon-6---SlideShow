@@ -58,6 +58,7 @@ const App = (props) => {
         onClick={(el) => {
           onRestart(el);
         }}
+        disabled={prevButton}
       >
         Restart"
       </button>
