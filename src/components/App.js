@@ -4,21 +4,21 @@ import "../styles/App.css";
 const App = ({ slides }) => {
   const [index, setIndex] = React.useState(0);
 
-  const onNext = (el) => {
+  const onNext = () => {
     setIndex(index + 1);
     if (index === slides.length - 2 || slides.length === 1) {
       return;
     }
   };
 
-  const onPrev = (el) => {
+  const onPrev = () => {
     if (index === 0) {
       return;
     }
     setIndex(index - 1);
   };
 
-  const onRestart = (el) => {
+  const onRestart = () => {
     setIndex(0);
   };
 
@@ -30,7 +30,7 @@ const App = ({ slides }) => {
       <button
         data-testid="button-prev"
         disabled={index === 0 ? true : false}
-        onClick={(el) => onPrev(el)}
+        onClick={() => onPrev()}
       >
         Prev
       </button>
@@ -38,15 +38,15 @@ const App = ({ slides }) => {
       <button
         data-testid="button-next"
         disabled={index === slides.length - 1 ? true : false}
-        onClick={(el) => onNext(el)}
+        onClick={() => onNext()}
       >
         Next
       </button>
 
       <button
         data-testid="button-restart"
-        onClick={(el) => {
-          onRestart(el);
+        onClick={() => {
+          onRestart();
         }}
         disabled={index === 0 ? true : false}
       >
