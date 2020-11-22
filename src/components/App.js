@@ -1,45 +1,35 @@
 import React from "react";
 import "../styles/App.css";
 
-const App = (props) => {
+const App = ({ slides }) => {
   const [index, setIndex] = React.useState(0);
-  const [nextButton, setNextButton] = React.useState(false);
-  const [prevButton, setPrevButton] = React.useState(true);
 
   const onNext = (el) => {
     setIndex(index + 1);
-    if (index === props.slides.length - 2) {
-      setNextButton(true);
+    if (index === slides.length - 2 || slides.length === 1) {
       return;
     }
-    setNextButton(false);
-    setPrevButton(false);
   };
 
   const onPrev = (el) => {
     if (index === 0) {
-      setPrevButton(true);
       return;
     }
     setIndex(index - 1);
-    setPrevButton(false);
-    setNextButton(false);
   };
 
   const onRestart = (el) => {
     setIndex(0);
-    setNextButton(false);
-    setPrevButton(true);
   };
 
   return (
     <>
-      <h1 data-testid="title">{props.slides[index].title}</h1>
-      <p data-testid="text">{props.slides[index].text}</p>
+      <h1 data-testid="title">{slides[index].title}</h1>
+      <p data-testid="text">{slides[index].text}</p>
 
       <button
         data-testid="button-prev"
-        disabled={prevButton}
+        disabled={index === 0 ? true : false}
         onClick={(el) => onPrev(el)}
       >
         Prev
@@ -47,7 +37,7 @@ const App = (props) => {
 
       <button
         data-testid="button-next"
-        disabled={nextButton}
+        disabled={index === slides.length - 1 ? true : false}
         onClick={(el) => onNext(el)}
       >
         Next
@@ -58,7 +48,7 @@ const App = (props) => {
         onClick={(el) => {
           onRestart(el);
         }}
-        disabled={prevButton}
+        disabled={index === 0 ? true : false}
       >
         Restart"
       </button>
